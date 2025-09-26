@@ -2,7 +2,6 @@ vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
 vim.lsp.enable 'pyright'
 
--- 放在你的配置里（init.lua 或某个 plugin config 的 config() 里）
 local group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
