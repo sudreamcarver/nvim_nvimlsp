@@ -1,24 +1,31 @@
-print("✅ Loading core diagnostics config...")
+-- ~/.config/nvim/lua/config/diagnostic.lua
 
--- 1. 设置诊断图标
+print("✅ Loading simplified diagnostics config...")
+
+vim.o.signcolumn = 'yes'
+
+
 local signs = {
-    Error = " ",
-    Warn  = " ",
-    Hint  = " ",
-    Info  = " ",
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn",  text = "" },
+    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignHint",  text = "" },
 }
 
+for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name })
+end
+
 vim.diagnostic.config({
-    signs = {
-        active = signs,
-    },
+    signs = true,
     underline = true,
-    undateline = true,
+    update_in_insert = false,
     severity_sort = true,
 })
 
--- 2. 设置悬停浮窗 (CursorHold)
-vim.o.updatetime = 300 -- 默认 4000ms 太久了
+
+-- CursorHold
+vim.o.updatetime = 300
 local group = vim.api.nvim_create_augroup("CoreDiagnosticsAutocmds", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
     group = group,
