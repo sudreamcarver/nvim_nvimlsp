@@ -1,8 +1,10 @@
-vim.lsp.enable 'clangd'
+--vim.lsp.enable 'clangd'
+vim.lsp.enable 'jsonls'
+vim.lsp.enable 'ccls'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'pyright'
 
-vim.lsp.set_log_level("debug")
+--vim.lsp.set_log_level("debug")
 
 local group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true })
 
